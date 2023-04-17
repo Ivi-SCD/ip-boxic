@@ -1,0 +1,43 @@
+type Mutation {
+    addCountry(countryDTO: CountryDTO): Country
+    addArtist(artistDTO: ArtistDTO): Artist
+}
+
+type Country {
+    id: ID!
+    code: String!
+}
+
+input CountryDTO {
+    code: String!
+}
+
+input ArtistDTO {
+    name: String!
+    birthdate: String!
+    country_id: Int!
+    artistType: ArtistType!
+}
+
+type Artist {
+    id: ID!
+    name: String!
+    birthdate: String!
+    country:Country!
+    artistType: ArtistType!
+}
+
+enum ArtistType {
+    SOLO
+    BAND
+    DUO
+    TRIO
+}
+
+type Query {
+    findCountryById(id: ID): Country
+    findAllCountries: [Country]
+
+    findArtistById(id:ID): Artist
+    findAllArtists: [Artist]
+}
