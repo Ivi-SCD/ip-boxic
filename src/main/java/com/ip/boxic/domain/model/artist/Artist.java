@@ -100,4 +100,11 @@ public class Artist {
                 ", artistType=" + artistType +
                 '}';
     }
+
+    public Artist updateInfo(ArtistDTO artistDTO) {
+        this.name = artistDTO.name();
+        this.birthdate = LocalDate.parse(artistDTO.birthdate(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        this.artistType = artistDTO.artistType();
+        return this;
+    }
 }

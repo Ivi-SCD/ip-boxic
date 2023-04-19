@@ -1,6 +1,9 @@
 type Mutation {
     addCountry(countryDTO: CountryDTO): Country
+
     addArtist(artistDTO: ArtistDTO): Artist
+    deleteArtistById(id: ID!): Artist
+    updateArtist(artistDTO: ArtistDTO): [Artist]
 }
 
 type Country {
@@ -38,6 +41,7 @@ type Query {
     findCountryById(id: ID): Country
     findAllCountries: [Country]
 
-    findArtistById(id:ID): Artist
     findAllArtists: [Artist]
+    findArtistByName(name: String): Artist
+    findArtistsByCountryCode(code: String!): [Artist]
 }
