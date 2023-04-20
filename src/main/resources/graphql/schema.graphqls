@@ -1,5 +1,7 @@
 type Mutation {
     addCountry(countryDTO: CountryDTO): Country
+    deleteCountry(id: ID!): Country
+    updateCountry(countryDTO: CountryDTO): Country
 
     addArtist(artistDTO: ArtistDTO): Artist
     deleteArtistById(id: ID!): Artist
@@ -38,7 +40,8 @@ enum ArtistType {
 }
 
 type Query {
-    findCountryById(id: ID): Country
+    findCountryById(id: ID!): Country
+    findCountryByCode(code: String!): Country
     findAllCountries: [Country]
 
     findAllArtists: [Artist]
