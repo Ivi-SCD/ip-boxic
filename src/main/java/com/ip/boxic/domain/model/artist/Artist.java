@@ -1,19 +1,21 @@
 package com.ip.boxic.domain.model.artist;
 
 import com.ip.boxic.domain.model.country.Country;
+import com.ip.boxic.domain.model.music.Music;
 import com.ip.boxic.dtos.artist.ArtistDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "Artist")
 @Table(name = "artist")
 public class Artist {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private LocalDate birthdate;
@@ -21,6 +23,9 @@ public class Artist {
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+
+    @OneToMany
+    private List<Music> musics = new ArrayList<Music>();
 
     @Enumerated(EnumType.STRING)
     @Column(name="type")
@@ -73,6 +78,18 @@ public class Artist {
         return artistType;
     }
 
+    public void addMusic(Music music) {
+        this.musics.add(music);
+    }
+
+    public void removeMusic(int i) {
+        this.musics.remove(i);
+    }
+
+    public void removeMusic(Music music) {
+        this.musics.remove(music);
+    }
+
     public void setartistType(ArtistType artistType) {
         this.artistType = artistType;
     }
@@ -88,17 +105,6 @@ public class Artist {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Artist{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", birthdate=" + birthdate +
-                ", country=" + country +
-                ", artistType=" + artistType +
-                '}';
     }
 
     public Artist updateInfo(ArtistDTO artistDTO) {
