@@ -1,7 +1,7 @@
 package com.ip.boxic.controller;
 
 import com.ip.boxic.domain.model.country.Country;
-import com.ip.boxic.domain.model.repositories.CountryRepository;
+import com.ip.boxic.domain.repositories.CountryRepository;
 import com.ip.boxic.dtos.country.CountryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;

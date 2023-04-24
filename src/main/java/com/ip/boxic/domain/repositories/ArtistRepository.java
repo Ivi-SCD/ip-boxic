@@ -1,4 +1,4 @@
-package com.ip.boxic.domain.model.repositories;
+package com.ip.boxic.domain.repositories;
 
 import com.ip.boxic.domain.model.artist.Artist;
 import org.springframework.data.jpa.repository.JpaRepository;

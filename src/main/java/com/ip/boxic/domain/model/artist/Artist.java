@@ -25,7 +25,7 @@ public class Artist {
     private Country country;
 
     @OneToMany
-    private List<Music> musics = new ArrayList<Music>();
+    private List<Music> musics = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     @Column(name="type")
@@ -74,9 +74,14 @@ public class Artist {
         this.country = country;
     }
 
-    public ArtistType getartistType() {
+    public ArtistType getArtistType() {
         return artistType;
     }
+
+    public void setArtistType(ArtistType artistType) {
+        this.artistType = artistType;
+    }
+
 
     public void addMusic(Music music) {
         this.musics.add(music);
@@ -90,9 +95,6 @@ public class Artist {
         this.musics.remove(music);
     }
 
-    public void setartistType(ArtistType artistType) {
-        this.artistType = artistType;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -111,6 +113,7 @@ public class Artist {
         this.name = artistDTO.name();
         this.birthdate = LocalDate.parse(artistDTO.birthdate(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         this.artistType = artistDTO.artistType();
+        this.country = artistDTO.country();
         return this;
     }
 }

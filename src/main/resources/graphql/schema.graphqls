@@ -1,11 +1,11 @@
 type Mutation {
-    addCountry(countryDTO: CountryDTO): Country
-    deleteCountry(id: ID!): Country
-    updateCountry(countryDTO: CountryDTO): Country
+    addCountry(countryDTO: CountryDTO): CountryResponse
+    deleteCountry(id: ID!): CountryResponse
+    updateCountry(countryDTO: CountryDTO!): CountryResponse
 
-    addArtist(artistDTO: ArtistDTO): Artist
-    deleteArtistById(id: ID!): Artist
-    updateArtist(artistDTO: ArtistDTO): [Artist]
+    addArtist(artistDTO: ArtistDTO): ArtistResponse
+    deleteArtistById(id: ID!): ArtistResponse
+    updateArtist(artistDTO: ArtistDTO): [ArtistResponse]
 }
 
 type Country {
@@ -17,6 +17,10 @@ input CountryDTO {
     code: String!
 }
 
+type CountryResponse {
+    code: String!
+}
+
 input ArtistDTO {
     name: String!
     birthdate: String!
@@ -24,11 +28,10 @@ input ArtistDTO {
     artistType: ArtistType!
 }
 
-type Artist {
-    id: ID!
+type ArtistResponse {
     name: String!
     birthdate: String!
-    country:Country!
+    country: Country!
     artistType: ArtistType!
 }
 
@@ -40,11 +43,11 @@ enum ArtistType {
 }
 
 type Query {
-    findCountryById(id: ID!): Country
-    findCountryByCode(code: String!): Country
-    findAllCountries: [Country]
+    findCountryById(id: ID!): CountryResponse
+    findCountryByCode(code: String!): CountryResponse
+    findAllCountries: [CountryResponse]
 
-    findAllArtists: [Artist]
-    findArtistByName(name: String): Artist
-    findArtistsByCountryCode(code: String!): [Artist]
+    findAllArtists: [ArtistResponse]
+    findArtistByName(name: String): ArtistResponse
+    findArtistsByCountryCode(code: String!): [ArtistResponse]
 }
